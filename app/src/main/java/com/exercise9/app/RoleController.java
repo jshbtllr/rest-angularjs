@@ -14,8 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class RoleController {
 	private Logger logger = Logger.getLogger(RoleController.class);
 
@@ -28,8 +29,8 @@ public class RoleController {
 	private static final Boolean ascending = true;
 	private static final Boolean descending = false;
 
-	@RequestMapping(value="/roles", method=RequestMethod.GET)
-	protected ModelAndView showRoles(@RequestParam(required=false) String sort, @RequestParam(required=false) String order) {
+	@RequestMapping(value="/roles", method=RequestMethod.GET, headers="Accept=application/json")
+	protected List <Roles> showRoles(@RequestParam(required=false) String sort, @RequestParam(required=false) String order) {
 		logger.info("Role Controller show current Roles");
 		Integer sortType = null;
 		Boolean orderType = null;
@@ -47,12 +48,8 @@ public class RoleController {
 		} else {
 			orderType = descending;
 		}
-
-		ModelAndView modelAndView = new ModelAndView("roles");
-		List <Roles> roleList = roleService.read(sortType, orderType);
-		modelAndView.addObject("roles", roleList);
-
-		return modelAndView;
+		
+		return roleService.read(sortType, orderType);
 	}
 
 	@RequestMapping(value="/roles", method=RequestMethod.POST)

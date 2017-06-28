@@ -65,8 +65,8 @@ public class HibernateConfiguration {
 	@Bean
 	public LocalSessionFactoryBean sessionFactoryBean() {
 		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-		sessionFactoryBean.setDataSource(getDataSource());
-		sessionFactoryBean.setHibernateProperties(getProperties());
+		sessionFactoryBean.setDataSource(dataSource());
+		sessionFactoryBean.setHibernateProperties(properties());
 		sessionFactoryBean.setPackagesToScan(new String[] {"com.exercise9.core.model"});
 		return sessionFactoryBean;
 	}
