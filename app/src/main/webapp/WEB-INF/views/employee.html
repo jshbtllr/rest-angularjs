@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="employeeRegistration">
+	<head>
+		<title> TEST </title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+		<script src="controller.js"></script>
+	</head>
+
+	<body>
+		<div ng-controller="EmployeeController as ctrl"></div>
+		<table border="1">
+			<tr ng-repeat="emp in ctrl.employee">
+				<td>{{emp.id}}</td>
+				<td>{{emp.name.firstName}} {{emp.name.lastName}}</td>
+			</tr>
+		</table>
+	</body>
+</html>

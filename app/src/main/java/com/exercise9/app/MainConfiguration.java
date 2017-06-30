@@ -22,6 +22,8 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 
 
 @Configuration
@@ -34,7 +36,7 @@ public class MainConfiguration extends WebMvcConfigurerAdapter {
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/views/");
-		viewResolver.setSuffix(".jsp");
+		viewResolver.setSuffix(".html");
 		return viewResolver;
 	}
 
@@ -63,5 +65,16 @@ public class MainConfiguration extends WebMvcConfigurerAdapter {
 		LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
 		interceptor.setParamName("language");
 		interceptorRegistry.addInterceptor(interceptor);
+	}
+
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }	
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	//	registry.addResourceHandler("/js/**").addResourceLocations("classpath:/js/");
 	}
 }

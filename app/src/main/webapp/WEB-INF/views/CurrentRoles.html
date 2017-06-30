@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="controller.js"></script>
+<!--		<script type="text/javascript">
+			var app = angular.module("RoleManagement", []);
+
+			app.controller("RoleController", 
+				function($scope, $http) {
+					$http.get('http://localhost:8080/roles')
+						.then(function successCallback(response) {
+							$scope.roles = response.data;
+						});
+				});		
+		</script>-->
+		<title> Current Employee Roles </title>
+	</head>
+	<body ng-app="RoleManagement">
+		<h3> Current Employee Roles </h3>
+		<table border="1" ng-controller="RoleController">
+			<thead>
+				<tr>
+					<th> Role ID </th>
+					<th> Role Code </th>
+					<th> Role Name </th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="role in roles">
+					<td> {{role.id}} </td>
+					<td> {{role.roleCode}} </td>
+					<td> {{role.roleName}} </td>
+					<td> update | delete </td>
+				</tr>
+			</tbody>
+		</table>
+		<div ng-app="">
+		  <p>Name : <input type="text" ng-model="name"></p>
+		  <h1>Hello {{name}}</h1>
+		</div>		
+	</body>
+</html>

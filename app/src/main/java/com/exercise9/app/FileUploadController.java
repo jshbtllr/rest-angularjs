@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class FileUploadController {
 
 	@Autowired
@@ -29,6 +29,11 @@ public class FileUploadController {
 		logger.info("File Upload showForm()");
 		ModelAndView modelAndView = new ModelAndView("uploadform");
 		return modelAndView;
+	}
+
+	@RequestMapping("/CurrentRoles")
+	public String viewRoles() {
+		return "CurrentRoles";
 	}
 
 	@RequestMapping(value="/fileupload", method=RequestMethod.POST)
