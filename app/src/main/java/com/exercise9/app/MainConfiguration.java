@@ -71,10 +71,4 @@ public class MainConfiguration extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }	
-
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-	//	registry.addResourceHandler("/js/**").addResourceLocations("classpath:/js/");
-	}
 }
